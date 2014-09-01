@@ -1,0 +1,35 @@
+﻿<div class="fishBowl" ng-show="showSignIn()">
+    <h1>Sign In</h1>
+    <form role="form" ng-show="nonSignedInParticipants.length > 0">
+    <p>Sign in yourself or those with you</p>
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn  btn-primary" ng-click="signInToFishBowl ()">
+                Sign In</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1">
+        </div>
+    </div>
+    <div class="row" ng-repeat="participant in nonSignedInParticipants">
+        <div class="col-xs-1">
+            <input type="checkbox" name="nonSignedInParticipants[]" value="{{participant.Name}}"
+                ng-model="participant.SignedIn" />
+        </div>
+        <div class="col-xs-2">
+            {{participant.Name}}</div>
+        <div class="col-xs-9">
+            <img class="img-thumbnail" src="{{participant.ImageUrl}}" /></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn  btn-primary" ng-click="signInToFishBowl ()">
+                Sign In</button>
+        </div>
+    </div>
+    </form>
+    <p ng-show="nonSignedInParticipants.length==0">Everyone is signed in. <a
+                            ng-click="register()">Register?</a> </p>
+
+</div>

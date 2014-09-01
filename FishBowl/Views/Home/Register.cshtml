@@ -1,0 +1,29 @@
+﻿<div class="fishBowl" ng-show="showRegister()">
+    <h1>Register</h1>
+    <p>Supply a short, unique, name and select an avatar</p>
+    <form role="form">
+        <div class="form-group">
+            <label for="name">
+                Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Name" required ng-model="registeredName">
+            <div class="radio" ng-repeat="avatar in avatars">
+                <input type="radio" value="{{avatar.Name}}" ng-model="$parent.registeredAvatar"/>
+                <img class="img-thumbnail" src="{{avatar.ImageUrl}}" />
+            </div>
+        </div>
+        <div class="row" ng-show="showValidationMessage">
+            <div class="col-sm-12">
+                <div>{{registeredNameRequired}}</div>
+                <div>{{registeredAvatarRequired}}</div>
+                <div>{{registrationNameUnique}}</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <button class="btn  btn-primary"  ng-click="registerParticipant ()">
+                    Register</button>
+            </div>
+        </div>
+    </form>
+</div>

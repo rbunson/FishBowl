@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Fish Bowl";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div ng-app="app" ng-controller="FishBowlCtrl">
+    @{ Html.RenderPartial("Nav");}
+    <br />
+    @{ Html.RenderPartial("SignIn");}
+    @{ Html.RenderPartial("Register");}
+    @{ Html.RenderPartial("FishBowl");}
+</div>

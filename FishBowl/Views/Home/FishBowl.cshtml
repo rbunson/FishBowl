@@ -1,0 +1,123 @@
+﻿<div class="fishBowl" ng-show="showFishBowl()">
+    <div class="row">
+        <div class="col-xs-3" ng-repeat="participant in speakingParticipants">
+            <div class="fish">
+                <img class="img-circle" src="{{participant.ImageUrl}}" />
+                <p class="small">
+                    {{participant.Name}}</p>
+                <button class="btn-block btn-sm" ng-click="leave (participant.Name)">
+                    Leave</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="chair text-center">
+                <img ng-show="showChair ()" src="/Content/Images/Magenta-Seat-icon.png" />
+                <div ng-if="!showChair ()">
+                    <img src="{{waitingToSpeak.ImageUrl}}" />
+                    <p class="small">
+                        {{waitingToSpeak.Name}} waiting to join</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12" ng-show="signedInParticipants.length==0">
+            <div class="text-center">
+                <p>
+                    Nobody is here yet. <a ng-click="signIn()">Sign in</a>. Not registered, yet?. <a
+                        ng-click="register()">Register</a>
+                .
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="col-xs-12">
+            <form>
+            <div class="form-group">
+                <input id="chat" type="text" class="form-control" ng-model="chatMessage" />
+                <button class="btn navbar-btn btn-sm" ng-click="sendChat()" ng-disabled="chatMessage.length==0">
+                    Send Chat</button>
+                <button class="btn navbar-btn btn-sm" data-toggle="modal" data-target="#myModal">
+                    Show Chat Messages ({{chatMessages.length}})
+                </button>
+            </div>
+            </form>
+            <div class="row">
+                <div class="col-xs-1" ng-repeat="participant in nonSpeakingParticipants1thru12">
+                    <div class="text-center">
+                        <img src="{{participant.ImageUrl}}" />
+                        <p class="small" style="margin-bottom: 0">
+                            {{participant.Name}}</p>
+                        <div class="btn-group dropup">
+                            <button type="button" class="btn btn-sm" ng-disabled="noMoreSeats ()" ng-click="enter (participant.Name)">
+                                Join
+                            </button>
+                            <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a ng-click="signOut (participant.Name)">Sign Out</a></li>
+                                <li><a ng-click="startChat (participant.Name)">Chat</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:3px" class="row">
+                <div class="col-xs-1" ng-repeat="participant in nonSpeakingParticipants13thru24">
+                    <div class="text-center">
+                        <img src="{{participant.ImageUrl}}" />
+                        <p style="margin-bottom:0">
+                            {{participant.Name}}</p>
+                        <div class="btn-group dropup">
+                            <button type="button" class="btn btn-sm" ng-disabled="noMoreSeats ()" ng-click="enter (participant.Name)">
+                                Join
+                            </button>
+                            <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a ng-click="signOut (participant.Name)">Sign Out</a></li>
+                                <li><a ng-click="startChat (participant.Name)">Chat</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="text-center">
+                        Don't see yourself? <a ng-click="signIn()">Sign in</a>. Not registered, yet?. <a
+                            ng-click="register()">Register</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;</button>
+                    <h4 class="modal-title">
+                        Chat Messages</h4>
+                </div>
+                <div class="modal-body">
+                    <div ng-repeat="message in chatMessages">
+                        {{message.Message}}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</div>
